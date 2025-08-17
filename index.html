@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Inteligência Emocional - Portfólio</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5; color: #333; }
+    header { background-color: #27628d; color: white; padding: 15px; text-align: center; font-size: 14px; }
+    main { padding: 30px 20px; max-width: 1000px; margin: auto; }
+    h1, h2 { color: #27628d; margin-bottom: 10px; }
+    .grid { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+    .card { background: white; padding: 15px; border-radius: 10px; flex: 1; min-width: 260px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);}
+    .chart-container { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin: 25px auto; max-width: 550px; }
+    .note { font-size: 12px; color: #555; margin-top: 5px; }
+</style>
+</head>
+<body>
+
+<header>
+Silvanio Gois — Técnico em Administração e Edificações | Graduando em Processos Gerenciais | sg@silvaniogois.com.br | www.silvaniogois.com.br
+</header>
+
+<main>
+<h1>Aplicação de Inteligência Emocional no Segmento Corporativo</h1>
+<p>Este dashboard apresenta indicadores de Inteligência Emocional (IE) em empresas, com visualização compacta e profissional, demonstrando benefícios, riscos e evolução ao longo do tempo.</p>
+
+<div class="grid">
+    <div class="card">
+        <h2>Benefícios da IE</h2>
+        <ul>
+            <li>Melhora no relacionamento interpessoal</li>
+            <li>Redução de conflitos</li>
+            <li>Aumento de produtividade (15–25%)</li>
+            <li>Clima organizacional positivo (70–80% satisfação)</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>Riscos da Falta de IE</h2>
+        <ul>
+            <li>Alta rotatividade</li>
+            <li>Conflitos frequentes</li>
+            <li>Desmotivação da equipe</li>
+            <li>Queda de performance</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Gráfico Clima Organizacional -->
+<div class="chart-container">
+    <h2>Clima Organizacional</h2>
+    <canvas id="climaBarChart" height="150"></canvas>
+    <div class="note">Fonte: Pesquisa Interna de Satisfação Corporativa (simulada)</div>
+</div>
+
+<!-- Gráfico Produtividade -->
+<div class="chart-container">
+    <h2>Produtividade da Equipe</h2>
+    <canvas id="prodBarChart" height="150"></canvas>
+    <div class="note">Fonte: Benchmark de produtividade corporativa (simulado)</div>
+</div>
+
+<!-- Tendência -->
+<div class="chart-container">
+    <h2>Tendência de Aplicação da IE (Últimos 6 Meses)</h2>
+    <canvas id="trendChart" height="170"></canvas>
+    <div class="note">Metodologia: Avaliação mensal das competências de IE (simulado)</div>
+</div>
+
+<!-- Indicadores -->
+<div class="grid">
+    <div class="card">
+        <h2>Autoconsciência</h2>
+        <canvas id="autoconscienciaBar" height="50"></canvas>
+        <div class="note">Percentual médio: 87%</div>
+    </div>
+    <div class="card">
+        <h2>Autogestão</h2>
+        <canvas id="autogestaoBar" height="50"></canvas>
+        <div class="note">Percentual médio: 76%</div>
+    </div>
+    <div class="card">
+        <h2>Empatia</h2>
+        <canvas id="empatiaBar" height="50"></canvas>
+        <div class="note">Percentual médio: 90%</div>
+    </div>
+</div>
+
+</main>
+
+<footer>
+© 2025 Silvanio Gois — Todos os direitos reservados | <a href="https://www.silvaniogois.com.br">Retornar ao site</a>
+</footer>
+
+<script>
+    const generalOpts = {
+        animation: { duration: 800, easing: 'easeOutQuart' },
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + '%' } }
+        }
+    };
+
+    // Clima Organizacional - Barras Verticais
+    new Chart(document.getElementById('climaBarChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Bom', 'Regular', 'Crítico'],
+            datasets: [{ data: [75, 18, 7], backgroundColor: ['#27628d','#4a90e2','#e74c3c'] }]
+        },
+        options: generalOpts
+    });
+
+    // Produtividade da Equipe - Barras Horizontais (corrigido)
+    new Chart(document.getElementById('prodBarChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Alta', 'Média', 'Baixa'],
+            datasets: [{
+                data: [65, 25, 10],
+                backgroundColor: ['#27628d','#4a90e2','#e74c3c']
+            }]
+        },
+        options: {
+            ...generalOpts,
+            indexAxis: 'y',
+            scales: { 
+                x: { beginAtZero: true, max: 100 }, 
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Tendência - Linha
+    new Chart(document.getElementById('trendChart'), {
+        type: 'line',
+        data: {
+            labels: ['Mar','Abr','Mai','Jun','Jul','Ago'],
+            datasets: [
+                { label:'Autoconsciência', data:[75,78,80,82,85,87], borderColor:'#27628d',backgroundColor:'rgba(39,98,141,0.2)',fill:true,tension:0.3 },
+                { label:'Autogestão', data:[65,68,70,72,74,76], borderColor:'#4a90e2',backgroundColor:'rgba(74,144,226,0.2)',fill:true,tension:0.3 },
+                { label:'Empatia', data:[80,82,84,86,88,90], borderColor:'#e67e22',backgroundColor:'rgba(230,126,34,0.2)',fill:true,tension:0.3 }
+            ]
+        },
+        options: {
+            animation: { duration:800, easing:'easeOutQuart' },
+            responsive:true,
+            plugins:{ legend:{position:'bottom'} },
+            scales: { y:{ beginAtZero: false, max:100 }, x:{} }
+        }
+    });
+
+    // Indicadores horizontais animados
+    function createBar(id, value, color){
+        const ctx = document.getElementById(id).getContext('2d');
+        const barChart = new Chart(ctx, {
+            type: 'bar',
+            data: { labels:[''], datasets:[{ data:[0], backgroundColor:color }] },
+            options:{
+                indexAxis:'y',
+                responsive:true,
+                plugins:{ legend:{display:false}, tooltip:{enabled:false} },
+                scales:{ x:{ max:100, display:false }, y:{ display:false } },
+                animation:{ duration:800, easing:'easeOutQuart' }
+            }
+        });
+        let current = 0;
+        const step = value / 40;
+        const interval = setInterval(()=>{
+            current += step;
+            if(current >= value) current = value;
+            barChart.data.datasets[0].data[0] = current;
+            barChart.update();
+            if(current >= value) clearInterval(interval);
+        },20);
+    }
+
+    window.onload = function() {
+        createBar('autoconscienciaBar', 87, '#27628d');
+        createBar('autogestaoBar', 76, '#4a90e2');
+        createBar('empatiaBar', 90, '#e67e22');
+    };
+</script>
+
+</body>
+</html>
