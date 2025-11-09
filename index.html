@@ -7,40 +7,85 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5; color: #333; }
-    header { background-color: #27628d; color: white; padding: 15px; text-align: center; font-size: 14px; }
+    
+    /* Estilos do Cabeçalho */
+    header { 
+        background-color: #27628d; 
+        color: white; 
+        padding: 15px; 
+        text-align: center; 
+        font-size: 14px; 
+        /* Adiciona Flexbox para centralizar e organizar o conteúdo */
+        display: flex;
+        align-items: center; /* Alinha verticalmente */
+        justify-content: center; /* Centraliza horizontalmente */
+        gap: 20px; /* Espaço entre a foto e o texto */
+    }
+    
+    /* Estilos da Imagem */
+    .header-photo {
+        width: 60px; /* Tamanho da imagem no cabeçalho */
+        height: 60px;
+        border-radius: 50%; /* Transforma a imagem em círculo */
+        object-fit: cover; /* Garante que a imagem preencha a área sem distorcer */
+        border: 2px solid white; /* Borda branca para destacar */
+    }
+
+    /* Estilos para o Bloco de Texto */
+    .header-info {
+        text-align: left; /* Alinha o texto à esquerda (fica mais profissional) */
+        line-height: 1.4;
+    }
+
+    /* Media Query para telas menores */
+    @media (max-width: 600px) {
+        header {
+            flex-direction: column; /* Empilha a foto e o texto em telas pequenas */
+            gap: 10px;
+        }
+        .header-info {
+            text-align: center; /* Centraliza o texto em telas pequenas */
+        }
+    }
+    
     main { padding: 30px 20px; max-width: 1000px; margin: auto; }
     h1, h2 { color: #27628d; margin-bottom: 10px; }
     .grid { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
     .card { background: white; padding: 15px; border-radius: 10px; flex: 1; min-width: 260px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);}
     .chart-container { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin: 25px auto; max-width: 550px; }
     .note { font-size: 12px; color: #555; margin-top: 5px; }
-
-    /* Rodapé estilizado */
-    footer {
-        background-color: #27628d; /* mesma cor do header */
-        color: white;
-        text-align: center;
-        padding: 15px;
-        font-size: 14px;
-    }
-    footer a {
-        color: white;
-        text-decoration: none;
-    }
-    footer a:hover {
-        text-decoration: underline;
+    
+    /* Rodapé estilizado */    
+    footer {        
+        background-color: #27628d; /* mesma cor do header */        
+        color: white;        
+        text-align: center;        
+        padding: 15px;        
+        font-size: 14px;    
+    }    
+    footer a {        
+        color: white;        
+        text-decoration: none;    
+    }    
+    footer a:hover {        
+        text-decoration: underline;    
     }
 </style>
 </head>
 <body>
 
 <header>
-Silvanio Gois — Técnico em Administração e Edificações | Graduando em Processos Gerenciais | sg@silvaniogois.com.br | www.silvaniogois.com.br
+    <img src="Executivo_sg_projetos.PNG" alt="Foto de Perfil de Silvanio Gois" class="header-photo">
+    
+    <div class="header-info">
+        <p style="margin: 0; font-weight: bold; font-size: 16px;">Silvanio Gois</p>
+        <p style="margin: 0;">Técnico em Administração e Edificações | Graduando em Processos Gerenciais</p>
+        <p style="margin: 0;"><a href="mailto:sg@silvaniogois.com.br" style="color: white; text-decoration: none;">sg@silvaniogois.com.br</a> | <a href="https://www.silvaniogois.com.br" style="color: white; text-decoration: none;">www.silvaniogois.com.br</a></p>
+    </div>
 </header>
 
 <main>
-<h1>Aplicação de Inteligência Emocional no Segmento Corporativo</h1>
-<p>Este dashboard apresenta indicadores de Inteligência Emocional (IE) em empresas, com visualização compacta e profissional, demonstrando benefícios, riscos e evolução ao longo do tempo.</p>
+    <h1>Aplicação de Inteligência Emocional no Segmento Corporativo</h1><p>Este dashboard apresenta indicadores de Inteligência Emocional (IE) em empresas, com visualização compacta e profissional, demonstrando benefícios, riscos e evolução ao longo do tempo.</p>
 
 <div class="grid">
     <div class="card">
@@ -63,28 +108,24 @@ Silvanio Gois — Técnico em Administração e Edificações | Graduando em Pro
     </div>
 </div>
 
-<!-- Gráfico Clima Organizacional -->
 <div class="chart-container">
     <h2>Clima Organizacional</h2>
     <canvas id="climaBarChart" height="150"></canvas>
     <div class="note">Fonte: Pesquisa Interna de Satisfação Corporativa (simulada)</div>
 </div>
 
-<!-- Gráfico Produtividade -->
 <div class="chart-container">
     <h2>Produtividade da Equipe</h2>
     <canvas id="prodBarChart" height="150"></canvas>
     <div class="note">Fonte: Benchmark de produtividade corporativa (simulado)</div>
 </div>
 
-<!-- Tendência -->
 <div class="chart-container">
     <h2>Tendência de Aplicação da IE (Últimos 6 Meses)</h2>
     <canvas id="trendChart" height="170"></canvas>
     <div class="note">Metodologia: Avaliação mensal das competências de IE (simulado)</div>
 </div>
 
-<!-- Indicadores -->
 <div class="grid">
     <div class="card">
         <h2>Autoconsciência</h2>
@@ -105,10 +146,7 @@ Silvanio Gois — Técnico em Administração e Edificações | Graduando em Pro
 
 </main>
 
-<footer>
-© 2025 Silvanio Gois — Todos os direitos reservados | <a href="https://www.silvaniogois.com.br">Retornar ao site</a>
-</footer>
-
+<footer>© 2025 Silvanio Gois — Todos os direitos reservados | <a href="https://www.silvaniogois.com.br">Retornar ao site</a></footer>
 <script>
     const generalOpts = {
         animation: { duration: 800, easing: 'easeOutQuart' },
@@ -143,8 +181,8 @@ Silvanio Gois — Técnico em Administração e Edificações | Graduando em Pro
             ...generalOpts,
             indexAxis: 'y',
             scales: { 
-                x: { beginAtZero: true, max: 100 }, 
-                y: { beginAtZero: true }
+                 x: { beginAtZero: true, max: 100 }, 
+                 y: { beginAtZero: true }
             }
         }
     });
